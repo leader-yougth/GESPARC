@@ -1,0 +1,27 @@
+
+<title>{% block title %} gesparc {% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/normalize.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/wizard.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/jquery.steps.css')}}"/>  
+
+
+<div id="login-page">
+    <div class="container">
+      <form class="form-login" action="{{ path ('connect_login') }}" method="post">
+        <h2 class="form-login-heading">sign in now</h2>
+        <div class="login-wrap">
+          <input type="text" class="form-control" name="_username" placeholder="User ID" autofocus>
+          <br>
+          <input type="password" class="form-control" name="_password" placeholder="Password">
+          <label class="checkbox">
+            <span class="pull-right">
+            <a data-toggle="modal" href="login.html#myModal"> Mot de passe oublie ?</a>
+            </span>
+            </label>
+          <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Connexion</button>
+        </div>
+      </form>
+    </div>
+  </div>

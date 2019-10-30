@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} gesparc {% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/normalize.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/wizard.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}"/>   
+        <link rel="stylesheet" href="{{ asset('assets/css/jquery.steps.css')}}"/>   
+        {% if app.user %}
+        
+         
+        {% block stylesheets %}
+        
+        {% endblock %}
+    </head>
+    <body>
+    
+    <div class="container-fluid content">
+    <div class="card">
+    <div class="card-header">
+        {% for entreprise in entreprises %}
+        <div class="row">
+            <img src="{{ asset ('uploads/images/logo/' ~ entreprise.LogoEntreprise) }}" class="text-left">
+
+            <h2 class="text-right offset-8">
+            <u><a href="{{ path('user_account_show', {'id':app.user.id}) }}">{{ app.user.username }}</></a>
+            
+                <h5><a href="{{ path('user_account_show', {'id':app.user.id}) }}">My Account </a></h5>
+                <h5><a href="{{ path('logout') }}">logout</a></h5>
+        </h2>
+        </div>
+        {% endfor %}
+        <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Menu</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Dropdown</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Link 1</a>
+      <a class="dropdown-item" href="#">Link 2</a>
+      <a class="dropdown-item" href="#">Link 3</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('user_account_index') }}">user</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('customer_index') }}">Customer</a>
+  </li>
+ 
+</ul>
+    </div>
+    
+        
+    </div>
+        <div class="row head">
+            <h1 class="display-4">Dashbord </h1>
+        </div>
+        {% block body %}{% endblock %}
+    </div>
+        
+        {% block javascripts %}
+
+            <script src="{{ asset('assets/lib/modernizr-2.6.2.min.js')}}"></script>
+            <script src="{{ asset('assets/lib/jquery-1.9.1.min.js')}}"></script> 
+            <script src="{{ asset('assets/lib/jquery.cookie-1.3.1.js')}}"></script>
+            <script src="{{ asset('assets/build/jquery.steps.js')}}"></script>
+            <script src="{{ asset('assets/build/start.js')}}"></script>
+            
+        {% endblock %}
+    </body>
+    {% else %}
+        {% include "/security/login.html.twig" %}
+    {% endif %}
+
+</html>

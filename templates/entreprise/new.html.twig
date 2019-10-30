@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% form_theme formCustomer 'bootstrap_4_layout.html.twig' %}
+{% block title %}New Entreprise{% endblock %}
+
+{% block body %}
+     {{ form_start(form) }} 
+        <div id="wizard" class="wizard">
+            
+                <h2>Choix de la langue</h2>
+                <section>
+                    <h1> Commencons par les bases</h1>
+                    <div class="form-row">
+                       
+                        <div class="col-md-12">
+                            <label for="language">Choix de votre langue </label>
+
+                            <select name="language" id="language" class="form-control">
+                                <option value="french">Francais</option>
+                                <option value="english">Anglais</option>
+                            </select>
+                            <br>
+                            
+                            <div class="form-group">
+                                <input type="checkbox"  class="col-md-1" name="licence_validation" id="">
+                                <label for="licence_validation" class="col-md-6">Je souhaite Utiliser une licence d'exploitation</label>      
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label for="licence"> Licence </label>
+                                <textarea class="form-control" name="licence" id="licence" cols="10" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Informations de base de l'entreprise</h2>  
+                <section>
+                <h1>Informations de base de l'entreprise</h1>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_row(form.NomEntreprise) }}
+
+                            {{ form_row(form.SecteurActivite) }}
+                        </div>
+                        <div class="form-group col-sm-4">
+                            {{ form_row(form.LogoEntreprise) }}
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Adresse de l'entreprise</h2>
+                <section>
+                    <h1>Adresse de l'entreprise</h1>
+                    <div class="form-row">
+                        <div class="form-group col-md-10">
+                            {{ form_row(form.BoitePostal ) }}
+
+                            {{ form_row(form.SiteWeb) }}
+
+                            {{ form_row(form.EmailEntreprise) }}
+                        </div>
+
+                        <div class="form-group col-md-5">             
+                            {{ form_row(form.PaysEntreprise) }}                
+                        </div>
+
+                        <div class="col-md-5">
+                            {{ form_row(form.VilleEntreprise ) }}
+                        </div>
+
+                    </div>
+                </section>
+
+                <h2>Information du compte Administrateur</h2>
+                <section>
+                    <fieldset>
+                        <legend>Information du compte Administrateur</legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                        <div class="form-row">
+                        <div class="col-md-6">
+                            {{ form_row(formCustomer.Customer_LastName) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(formCustomer.Customer_FirstName) }}
+                        </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="col-md-6">
+                            {{ form_row(formCustomer.Customer_PositionHeld) }}
+                        </div>
+
+                        <div class="col-md-6">
+                            {{ form_row(formCustomer.Customer_Avatar) }}                
+                        </div>
+                        </div>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>
+                                Parametres connexion
+                            </legend>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    {{ form_row(formUserAccount.username) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(formUserAccount.password) }}
+                                </div>
+                        </div>
+
+                            </div>
+                        <fieldset>
+                    </div>
+                </section>
+
+                <h2>Recapitulatif et Finalisation</h2>
+                <section>
+                    <h1>Recapitulatif et Finalisation</h1>
+                    
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Nom de l'entreprise : Evil-Corp</li>
+                            <li>Boite Postale : 450</li>
+                            <li>support@evilCorp.com</li>
+                            <li>Pays : Cameroun</li>
+                            <li>Ville : Douala</li>
+                            <li>Nom et Prenom : John Doe</li>
+                            <li> Login : jdoe@evilCorp.com</li>
+                            <li>Pass : toto1234</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+        
+        </div>
+        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+    
+    {# <a href="{{ path('entreprise_index') }}">back to list</a> #}
+{% endblock %}

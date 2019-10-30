@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.container-fluid .head {
+    min-height: 2em;
+    background-origin: padding-box;
+    text-align: center;
+    display: inline;
+}
+
+.head > h1, .head > h3{
+    text-align: center;
+}
+
+.container-fluid .row .progress{
+    margin: 5px auto;
+    position: relative;
+}
+.container-fluid {
+    height: auto;
+    background-attachment: fixed;
+    background-color: rgba(250, 248, 248, 0.486);
+    box-shadow: 3px 2px 15px 0px black;
+    border-radius: 5px;
+    min-width: 99.99%;
+    margin: auto;
+    position: relative;
+    min-height: 300px;
+    height: auto;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    
+}
+.wizard > section h3{
+    
+    text-align: center;
+}
+
+.container-fluid .content h1{
+    text-align: center;
+}

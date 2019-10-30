@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}User Account{% endblock %}
+
+{% block body %}
+    <h1>UserAccount list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>IsAdmin</th>
+                <th>Created At</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_account in user_accounts %}
+            
+            <tr>
+                <td>{{ user_account.id }}</td>
+                <td>{{ user_account.username }}</td>
+                <td>{{ user_account.IsAdmin ? 'Yes' : 'No' }}</td>
+                <td>{{ user_account.createdAt ? user_account.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('user_account_show', {'id': user_account.id}) }}">show</a>
+                    <a href="{{ path('user_account_new_edit', {'id': user_account.id, 'username': user_account.username}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

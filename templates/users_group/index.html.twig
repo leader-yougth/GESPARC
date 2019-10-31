@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}UsersGroup index{% endblock %}
+
+{% block body %}
+    <h1>UsersGroup index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>GroupName</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for users_group in users_groups %}
+            <tr>
+                <td>{{ users_group.id }}</td>
+                <td>{{ users_group.GroupName }}</td>
+                <td>
+                    <a href="{{ path('users_group_show', {'id': users_group.id}) }}">show</a>
+                    <a href="{{ path('users_group_edit', {'id': users_group.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('users_group_new') }}">Create new</a>
+{% endblock %}

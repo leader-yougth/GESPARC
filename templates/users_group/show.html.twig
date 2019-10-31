@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}UsersGroup{% endblock %}
+
+{% block body %}
+    <h1>UsersGroup</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>GroupName</th>
+                <td>{{ users_group.GroupName }}</td>
+
+                <td><a href="{{ path('add_user_group', {'id': users_group.id}) }}" class="btn btn-danger">Add user</a></td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+    <a href="{{ path('users_group_index') }}">back to list</a>
+
+    <a href="{{ path('users_group_edit', {'id': users_group.id}) }}">edit</a>
+
+    {{ include('users_group/_delete_form.html.twig') }}
+{% endblock %}

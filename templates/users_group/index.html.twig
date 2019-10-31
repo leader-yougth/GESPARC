@@ -10,9 +10,6 @@
             <tr>
                 <th>Id</th>
                 <th>GroupName</th>
-                <th>AvaibleUsers</th>
-                <th>Role</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +17,6 @@
             <tr>
                 <td>{{ users_group.id }}</td>
                 <td>{{ users_group.GroupName }}</td>
-                <td>{{ users_group.AvaibleUsers ? users_group.AvaibleUsers|join(', ') : '' }}</td>
-                <td>{{ users_group.role ? users_group.role|join(', ') : '' }}</td>
                 <td>
                     <a href="{{ path('users_group_show', {'id': users_group.id}) }}">show</a>
                     <a href="{{ path('users_group_edit', {'id': users_group.id}) }}">edit</a>

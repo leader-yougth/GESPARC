@@ -13,8 +13,8 @@ class UsersGroupType extends AbstractType
     {
         $builder
             ->add('GroupName')
-            ->add('AvaibleUsers')
-            ->add('role')
+            //->add('AvaibleUsers')
+            //->add('role')
         ;
     }
 

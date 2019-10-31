@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UsersGroupRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\GroupRepository")
  */
-class UsersGroup
+class Group
 {
     /**
      * @ORM\Id()
@@ -18,10 +16,8 @@ class UsersGroup
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $GroupName;
+  
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -33,18 +29,7 @@ class UsersGroup
         return $this->id;
     }
 
-    public function getGroupName(): ?string
-    {
-        return $this->GroupName;
-    }
-
-    public function setGroupName(string $GroupName): self
-    {
-        $this->GroupName = $GroupName;
-
-        return $this;
-    }
-
+    
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->CreatedAt;
@@ -56,7 +41,4 @@ class UsersGroup
 
         return $this;
     }
-
-    
-
 }

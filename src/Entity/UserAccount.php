@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -46,6 +48,21 @@ class UserAccount implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\UsersGroup", inversedBy="usersAvalable")
+     */
+    private $usersGroup;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Group", mappedBy="user")
+     */
+    private $groups;
+
+    public function __construct()
+    {
+        $this->groups = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -132,4 +149,47 @@ class UserAccount implements UserInterface
             {
                 return ['ROLE_USER'];
             }
+
+        public function getUsersGroup(): ?UsersGroup
+        {
+            return $this->usersGroup;
+        }
+
+        public function setUsersGroup(?UsersGroup $usersGroup): self
+        {
+            $this->usersGroup = $usersGroup;
+
+            return $this;
+        }
+
+        /**
+         * @return Collection|Group[]
+         */
+        public function getGroups(): Collection
+        {
+            return $this->groups;
+        }
+
+        public function addGroup(Group $group): self
+        {
+            if (!$this->groups->contains($group)) {
+                $this->groups[] = $group;
+                $group->setUser($this);
+            }
+
+            return $this;
+        }
+
+        public function removeGroup(Group $group): self
+        {
+            if ($this->groups->contains($group)) {
+                $this->groups->removeElement($group);
+                // set the owning side to null (unless already changed)
+                if ($group->getUser() === $this) {
+                    $group->setUser(null);
+                }
+            }
+
+            return $this;
+        }
 }

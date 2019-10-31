@@ -8,21 +8,12 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ users_group.id }}</td>
-            </tr>
-            <tr>
                 <th>GroupName</th>
                 <td>{{ users_group.GroupName }}</td>
+
+                <td><a href="{{ path('add_user_group', {'id': users_group.id}) }}" class="btn btn-danger">Add user</a></td>
             </tr>
-            <tr>
-                <th>AvaibleUsers</th>
-                <td>{{ users_group.AvaibleUsers ? users_group.AvaibleUsers|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td>{{ users_group.role ? users_group.role|join(', ') : '' }}</td>
-            </tr>
+        
         </tbody>
     </table>
 

@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\GroupRepository")
+ */
+class Group
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+  
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserAccount", mappedBy="group_user")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserAccount[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(UserAccount $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setGroupUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(UserAccount $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getGroupUser() === $this) {
+                $user->setGroupUser(null);
+            }
+        }
+
+        return $this;
+    }
+}
